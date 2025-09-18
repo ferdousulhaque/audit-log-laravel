@@ -14,7 +14,7 @@ class FeatureSettingsSeeder extends Seeder
     {
         $settings = [
             [
-                'category_name' => 'water',
+                'type' => 'water',
                 'settings' => ['solid' => 1, 'liquid' => 4],
                 'enable' => 1,
                 'details' => 'state of water',

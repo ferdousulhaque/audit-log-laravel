@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FeatureSettings extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+    use HasFactory;
 
     /**
      * The attributes that should be cast.
@@ -25,7 +27,7 @@ class FeatureSettings extends Model implements Auditable
      * @var array<int, string>
      */
     protected $fillable = [
-        'category_name',
+        'type',
         'settings',
         'enable',
         'details'
@@ -37,7 +39,7 @@ class FeatureSettings extends Model implements Auditable
      * @var array
      */
     protected $auditInclude = [
-        'category_name',
+        'type',
         'settings',
         'enable',
         'details'
@@ -54,15 +56,14 @@ class FeatureSettings extends Model implements Auditable
     ];
 
     /**
-     * Add custom attributes to the log.
+     * Tweak the audit data before it's saved.
      *
+     * @param array $data The audit data.
      * @return array
      */
-    public function customProperties(): array
+    public function transformAudit(array $data): array
     {
-        return [
-            'category_name' => $this->category_name,
-            'category_id'   => $this->id,
-        ];
+        $data['category_name'] = 'feature_settings';
+        return $data;
     }
 }

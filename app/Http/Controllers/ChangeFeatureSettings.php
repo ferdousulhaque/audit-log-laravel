@@ -23,9 +23,10 @@ class ChangeFeatureSettings extends Controller
 
     public function change(Request $request): RedirectResponse {
         Auth::loginUsingId(1);
-        FeatureSettings::where(['id' => 1])->update([
-            'category_name' => $request->get('category_name'),
-            'settings' => $request->get('settings'),
+        $settings = FeatureSettings::find(1);
+        $settings->update([
+            'type' => $request->get('type'),
+            'settings' => json_decode($request->get('settings'),true),
             'enable' => intval($request->get('enable')),
             'details' => $request->get('details')
         ]);

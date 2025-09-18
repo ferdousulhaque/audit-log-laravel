@@ -43,7 +43,7 @@
 
         <div class="mb-3">
             <label for="category_name" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="category_name" name="category_name" maxlength="100" value="{{ $category_name }}" required>
+            <input type="text" class="form-control" id="type" name="type" maxlength="100" value="{{ $type }}" required>
         </div>
 
         <div class="mb-3">

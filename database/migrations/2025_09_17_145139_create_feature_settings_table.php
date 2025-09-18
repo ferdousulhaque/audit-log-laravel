@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('feature_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name',100);
+            $table->string('type',100);
             $table->json('settings');
             $table->tinyInteger('enable');
             $table->string('details',500);
